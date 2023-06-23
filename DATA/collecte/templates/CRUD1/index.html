@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+<body>
+<h1> SAE24 </h1>
+<a href="/collecte/ajout/"> Ajouter </a>
+<ol>
+    {% for l in liste %}
+        <li> {{l}}  <a href="/collecte/affiche/{{l.id}}/"> Afficher </a> <a href="/collecte/update/{{l.id}}/"> Modifier </a> <a href="/collecte/delete/{{l.id}}/"> Supprimer </a> </li>
+    {% endfor %}
+</ol>
+
+</body>
+</html>
