@@ -1,44 +1,46 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from .forms import table1Form
-from . import models
+from .models import sensors1, sensors_data
+from .forms import SensorsForm
+from django.http import HttpResponseRedirect , HttpResponse
+from django.forms.models import model_to_dict
 
-def ajout(request):
-        form = table1Form()
-        return render(request, "CRUD1/ajout.html", {"form": form})
-
-def traitement(request):
-    lform = table1Form(request.POST)
-    if lform.is_valid():
-        table1 = lform.save()
-        return HttpResponseRedirect("/collecte/")
-    else :
-        return render(request, "collecte/CRUD1/ajout.html", {"form": lform})
 
 def index(request):
-    liste = list(models.table1.objects.all())
-    return render(request, "CRUD1/index.html", {"liste": liste})
+    return render(request, 'index.html')
 
-def affiche(request, id):
-    table1 = models.table1.objects.get(pk=id)
-    return render(request, "CRUD1/affiche.html", {"table1": table1})
+def capteur(request):
+    sensors = sensors1.objects.all()
+    return render(request, 'capteur/info.html', {'sensors': sensors})
+
+def donnee(request):
+    data = sensors_data.objects.all()
+    return render(request, 'donnee/info.html', {'data': data})
 
 def update(request, id):
-    table1 = models.table1.objects.get(pk=id)
-    form = table1Form(table1.dico())
-    return render(request,"CRUD1/update.html",{"form": form, "id": id})
-
-def traitementupdate(request, id):
-    lform = table1Form(request.POST)
-    if lform.is_valid():
-        table1 = lform.save(commit=False)
-        table1.id = id
-        table1.save()
-        return HttpResponseRedirect("/collecte/")
+    sensors = sensors1.objects.get(pk=id)
+    form = SensorsForm(model_to_dict(sensors))
+    if request.method == "POST":
+        form = SensorsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/capteur/info")
     else:
-        return render(request, "CRUD1/update.html", {"form": lform, "id": id})
+        return render(request, "capteur/update.html", {"form": form, "id": id})
 
-def delete(request, id):
-    table1 = models.table1.objects.get(pk=id)
-    table1.delete()
-    return HttpResponseRedirect("/collecte/")
+
+def updatetraitement(request, id):
+    sensors = SensorsForm(request.POST)
+    bak = sensors1.objects.get(id=id)
+    if sensors.is_valid():
+        sensors = sensors.save(commit=False)
+        sensors.id = id
+        sensors.macaddr = bak.macaddr
+        sensors.piece = bak.piece
+        sensors.save()
+        return HttpResponseRedirect("/capteur/info.html")
+    else:
+        return render(request, "capteur/info.html", {"form": sensors, "id": id})
+
+def filtre(request, id):
+    data = sensors_data.objects.filter(sensor = id)
+    return render(request, 'donnee/info.html', {'data': data})

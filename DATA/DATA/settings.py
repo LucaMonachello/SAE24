@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'GR6',
         'USER': 'root',
         'PASSWORD': 'toto',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }

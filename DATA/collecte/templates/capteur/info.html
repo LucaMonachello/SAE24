@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% block content %}
+
+
+<div class="mainpage">
+  <a href="/"> <p class="arow"> < </p> Page Pincipale</a>
+    <a href="/donnee/info/1"> Trier1</a>
+    <a href="/donnee/info/2"> Trier2</a>
+</div>
+
+<table class="forms">
+    <tr class="top">
+        <th>MAC</th>
+        <th>Pièce</th>
+        <th>Emplacement</th>
+        <th>Nom</th>
+        <th>Mise a jour</th>
+    </tr>
+    {% for sensor in sensors %}
+    <tbody>
+    <tr class="bot">
+        <td>{{sensor.macaddr}} </td>
+        <td>{{sensor.piece}}</td>
+        <td>{{sensor.emplacement}} </td>
+        <td>{{sensor.nom}} </td>
+        <td><a href="/capteur/update/{{sensor.id}}">Mise à jour</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock content %}
