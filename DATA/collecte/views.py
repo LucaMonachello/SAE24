@@ -28,7 +28,7 @@ def update(request, id):
         return render(request, "capteur/update.html", {"form": form, "id": id})
 
 
-def updatetraitement(request, id):
+def traitementupdate(request, id):
     sensors = SensorsForm(request.POST)
     bak = sensors1.objects.get(id=id)
     if sensors.is_valid():
