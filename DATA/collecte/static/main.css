@@ -1,99 +1,110 @@
-*{
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+* {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
     text-decoration: none;
 }
+
 body {
     font-family: 'Lato', sans-serif;
-    background-color: lightgray;
+    background-color: #f5f5f5;
 }
+
 .grandtitre {
     text-align: center;
-    background-color: lightgreen;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    font-size: 3.5em;
-    color: blue;
+    background-color: #ffcc00;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 3em;
+    color: #333333;
 }
+
 .boutons {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 10%;
-
+    padding-top: 50px;
 }
+
 .boutons a {
-    font-size: 3em;
+    font-size: 2em;
+    color: #ffffff;
 }
 
 .boutons2 {
-    background-color: lightgreen;
-    padding-right: 6%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-left: 6%;
+    background-color: #ffcc00;
+    padding: 20px;
     border-radius: 30px;
-    border-style: solid;
+    border: none;
 }
-.forms{
+
+.forms {
     margin-left: 27%;
     margin-right: 27%;
 }
-.top{
-    background-color: lightgreen;
+
+.top {
+    background-color: #ffcc00;
 }
+
 .top th {
-    font-size: 3em;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    border-style: solid;
+    font-size: 2.5em;
+    padding: 20px;
+    border: 1px solid #333333;
 }
+
 .top td {
     text-align: center;
-    border-style: solid;
+    border: 1px solid #333333;
 }
+
 .bot th {
-    font-size: 2em;
-    border-style: solid;
+    font-size: 1.8em;
+    border: 1px solid #333333;
 }
+
 .bot td {
     text-align: center;
-    border-style: solid;
+    border: 1px solid #333333;
     font-size: 1em;
 }
-.formulaire{
+
+.formulaire {
     display: flex;
     justify-content: center;
-    padding-top: 5%;
-    font-size: 2.5em;
+    padding-top: 50px;
+    font-size: 2em;
     width: 25%;
     padding-left: 38%;
     padding-right: 38%;
     text-align: center;
 }
-.formulaire a{
 
+.formulaire a {
+    color: #333333;
 }
-input{
-    font-size: 0.75em;
-    width: 700px;
+
+input {
+    font-size: 1em;
+    width: 100%;
 }
-.arow{
+
+.arow {
     text-align: center;
-    font-size: 3em;
+    font-size: 2.5em;
 }
+
 .mainpage {
-    align-item: center;
+    align-items: center;
     display: flex;
-    background-color: lightgreen;
-    margin-right: 90%;
+    background-color: #ffcc00;
+    margin-right: 10%;
     font-size: 1.3em;
 }
-.back{
+
+.back {
     text-align: center;
-    margin-top: 10%;
-    background-color: lightgreen;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    margin-top: 50px;
+    background-color: #ffcc00;
+    padding: 10px;
 }

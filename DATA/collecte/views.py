@@ -46,4 +46,4 @@ def traitementupdate(request, id):
 
 def filtre(request, id):
     data = capteur_data.objects.filter(sensor=id)
-    return render(request, 'donnee/info.html', {'data': data})
+    return render(request, 'donnees/info.html', {'data': data})
