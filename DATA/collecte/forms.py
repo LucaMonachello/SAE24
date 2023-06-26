@@ -1,24 +1,13 @@
-from django.forms import ModelForm
-from django.utils.translation import gettext_lazy as _
 from . import models
+from django.forms import ModelForm
 
-class table1Form(ModelForm):
+class CapteurForm(ModelForm):
     class Meta:
-        model = models.table1
-        fields = ('piece', 'emplacement')
+        model = models.capteur
+        fields = ('nom', 'emplacement')
         labels = {
-            'piece' : _('Pièce'),
-            'emplacement': _('Emplacement'),
+            'nom' : ('Nom'),
+            'emplacement': ('Emplacement'),
 
         }
 
-class table2Form(ModelForm):
-    class Meta:
-        model = models.table2
-        fields = ('date', 'temps', 'temp', 'nom')
-        labels = {
-            'date' : _('Date'),
-            'temps' : _('Temps') ,
-            'temp' : _('Température'),
-            'nom' : _('Nom du capteur')
-        }

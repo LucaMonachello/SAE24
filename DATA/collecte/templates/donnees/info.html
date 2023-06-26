@@ -1,16 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 
-<META HTTP-EQUIV="Refresh" CONTENT="10; info.html">
+<META HTTP-EQUIV="Refresh" CONTENT="10; /collecte/donnee/">
 
 <div class="mainpage">
-  <a href="/"> <p class="arow"> < </p> Page Principale</a >
+  <a href="/collecte/"> <p class="arow"> < </p> Page Principale</a >
 </div>
 
 <table class="forms">
 
     <tr class="top">
-        <th>Mac</th>
+        <th>MAC</th>
         <th>Nom</th>
         <th>Date</th>
         <th>Pièce</th>
@@ -20,11 +20,11 @@
 
     {% for i in data %}
     <tr class="bot">
-        <td>{{i.sensor.macaddr}}</td>
-        <td>{{i.sensor.nom}}</td>
+        <td>{{i.capteur.address}}</td>
+        <td>{{i.capteur.nom}}</td>
         <td>{{i.datetime}}</td>
-        <td>{{i.sensor.piece}}</td>
-        <td>{{i.sensor.emplacement}}</td>
+        <td>{{i.capteur.piece}}</td>
+        <td>{{i.capteur.emplacement}}</td>
         <td>{{i.temp}} °C</td>
 
     </tr>

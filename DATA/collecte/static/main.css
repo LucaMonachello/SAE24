@@ -1,0 +1,99 @@
+*{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-decoration: none;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: lightgray;
+}
+.grandtitre {
+    text-align: center;
+    background-color: lightgreen;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 3.5em;
+    color: blue;
+}
+.boutons {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10%;
+
+}
+.boutons a {
+    font-size: 3em;
+}
+
+.boutons2 {
+    background-color: lightgreen;
+    padding-right: 6%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 6%;
+    border-radius: 30px;
+    border-style: solid;
+}
+.forms{
+    margin-left: 27%;
+    margin-right: 27%;
+}
+.top{
+    background-color: lightgreen;
+}
+.top th {
+    font-size: 3em;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    border-style: solid;
+}
+.top td {
+    text-align: center;
+    border-style: solid;
+}
+.bot th {
+    font-size: 2em;
+    border-style: solid;
+}
+.bot td {
+    text-align: center;
+    border-style: solid;
+    font-size: 1em;
+}
+.formulaire{
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    font-size: 2.5em;
+    width: 25%;
+    padding-left: 38%;
+    padding-right: 38%;
+    text-align: center;
+}
+.formulaire a{
+
+}
+input{
+    font-size: 0.75em;
+    width: 700px;
+}
+.arow{
+    text-align: center;
+    font-size: 3em;
+}
+.mainpage {
+    align-item: center;
+    display: flex;
+    background-color: lightgreen;
+    margin-right: 90%;
+    font-size: 1.3em;
+}
+.back{
+    text-align: center;
+    margin-top: 10%;
+    background-color: lightgreen;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

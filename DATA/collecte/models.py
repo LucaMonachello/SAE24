@@ -1,26 +1,22 @@
 from django.db import models
 
-class table1(models.Model):
-    piece = models.CharField(max_length=255, null=False)
-    emplacement = models.CharField(max_length=255, null=False)
+class capteur(models.Model):
+    address = models.CharField(unique=True, max_length=12)
+    piece = models.CharField(max_length=50, null=False)
+    emplacement = models.CharField(max_length=50)
+    nom = models.CharField(max_length=50, blank=True, null=True)
 
-    def dico(self):
-        return {"piece": self.piece, "emplacement": self.emplacement}
 
     class Meta:
         managed = False
-        db_table = 'table1'
+        db_table = 'capteur'
 
 
-class table2(models.Model):
-    date = models.DateField(null=False)
-    temps = models.TimeField(null=False)
+class capteur_data(models.Model):
+    capteur = models.ForeignKey(capteur, models.DO_NOTHING, null=False)
+    datetime = models.DateTimeField(null=False)
     temp = models.DecimalField(max_digits=5, decimal_places=2, null=False)
-    nom = models.ForeignKey(table1, on_delete=models.CASCADE)
-
-    def dico(self):
-        return {"date": self.date, "temps": self.temps, "temps": self.temp, "nom": self.nom}
 
     class Meta:
         managed = False
-        db_table = 'table2'
+        db_table = 'capteur_data'

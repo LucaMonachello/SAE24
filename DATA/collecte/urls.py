@@ -1,11 +1,11 @@
-from . import views
 from django.urls import path
+from . import views
 
 urlpatterns = [
-    path("capteur/", views.capteur),
+    path('', views.index),
+    path("capteur/",views.capteurs),
+    path('capteur/update/<int:id>', views.update),
+    path('capteur/info/<int:id>', views.traitementupdate),
     path("donnee/", views.donnee),
-    path("", views.index),
-    path("filtre/<int:id>/", views.filtre),
-    path("update/<int:id>/", views.update),
-    path("traitementupdate/<int:id>/", views.traitementupdate),
-    ]
+    path('donnees/info/<int:id>', views.filtre),
+]
