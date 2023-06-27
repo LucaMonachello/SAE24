@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path("capteur/",views.capteurs),
-    path('capteur/update/<int:id>', views.update),
-    path('capteur/info/<int:id>', views.traitementupdate),
+    path('update/<int:id>/', views.update),
+    path('traitementupdate/<int:id>/', views.traitementupdate),
     path("donnee/", views.donnee),
-    path('donnees/info/<int:id>', views.filtre),
+    path('filtre/<int:id>/', views.filtre),
 ]

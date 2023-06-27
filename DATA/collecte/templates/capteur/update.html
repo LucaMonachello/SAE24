@@ -3,11 +3,11 @@
 <h1> Mise à jour </h1>
 
 <div class="formulaire">
-        <form method="post" action="/capteur/info/{{id}}">
+        <form method="post" action="/collecte/traitementupdate/{{id}}/">
             {% csrf_token %}
             {{form.as_ul}}
             <input type="submit" value="Envoyer les données"/>
         </form>
 </div>
-<h1><a href="/"> Retour </a></h1>
+<h1 class="back"><a href="/"> Retour </a></h1>
 {% endblock content %}

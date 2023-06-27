@@ -6,6 +6,10 @@ class capteur(models.Model):
     emplacement = models.CharField(max_length=50)
     nom = models.CharField(max_length=50, blank=True, null=True)
 
+    def dico(self):
+        return {"emplacement": self.emplacement, "nom": self.nom}
+
+
 
     class Meta:
         managed = False

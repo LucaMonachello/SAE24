@@ -3,13 +3,13 @@
 
 
 <div class="mainpage">
-  <a href="/"> <p class="arow"> < </p> Page Principale</a>
-    <a href="/donnees/info/1"> Trier A</a>
-    <a href="/donnees/info/2"> Trier B</a>
+  <a href="/collecte/"> <p class="arow"> < </p> Page Principale</a>
+    <a class="a" href="/collecte/filtre/1"> Trier A</a>
+    <a class="a" href="/collecte/filtre/2"> Trier B</a>
 </div>
 
-<table>
-    <tr>
+<table class="forms">
+    <tr class="top">
         <th>MAC</th>
         <th>Pièce</th>
         <th>Emplacement</th>
@@ -18,12 +18,12 @@
     </tr>
     {% for i in capteurs %}
     <tbody>
-    <tr>
+    <tr class="bot">
         <td>{{i.address}} </td>
         <td>{{i.piece}}</td>
         <td>{{i.emplacement}} </td>
         <td>{{i.nom}} </td>
-        <td><a href="/capteur/update/{{sensor.id}}">Mise à jour</a></td>
+        <td><a href="/collecte/update/{{i.id}}">Mise à jour</a></td>
     </tr>
     {% endfor %}
 </table>

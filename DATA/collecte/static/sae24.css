@@ -1,23 +1,27 @@
 * {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    padding: 0;
     text-decoration: none;
 }
 
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #f5f5f5;
+    background-color: cornflowerblue;
+}
+
+.a{
+    margin-left: 5%;
+    margin-right: 5%;
+
 }
 
 .grandtitre {
     text-align: center;
-    background-color: #ffcc00;
+    background-color: #336699;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 3em;
-    color: #333333;
+    color: lightpink;
 }
 
 .boutons {
@@ -32,7 +36,7 @@ body {
 }
 
 .boutons2 {
-    background-color: #ffcc00;
+    background-color: #336699;
     padding: 20px;
     border-radius: 30px;
     border: none;
@@ -44,7 +48,7 @@ body {
 }
 
 .top {
-    background-color: #ffcc00;
+    background-color: #336699;
 }
 
 .top th {
@@ -97,7 +101,7 @@ input {
 .mainpage {
     align-items: center;
     display: flex;
-    background-color: #ffcc00;
+    background-color: #336699;
     margin-right: 10%;
     font-size: 1.3em;
 }
@@ -105,6 +109,6 @@ input {
 .back {
     text-align: center;
     margin-top: 50px;
-    background-color: #ffcc00;
+    background-color: #336699;
     padding: 10px;
 }

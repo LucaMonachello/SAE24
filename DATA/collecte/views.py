@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import capteur, capteur_data
+from . import models
 from .forms import CapteurForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.forms.models import model_to_dict
@@ -20,30 +21,27 @@ def donnee(request):
 
 
 def update(request, id):
-    capteurs = capteur.objects.get(pk=id)
-    form = CapteurForm(model_to_dict(capteurs))
+    capteur_obj = capteur.objects.get(pk=id)
+
     if request.method == "POST":
-        form = CapteurForm(request.POST)
+        form = CapteurForm(request.POST, instance=capteur_obj)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect("/capteur/info")
+            return HttpResponseRedirect("/collecte/traitementupdate/")
     else:
-        return render(request, "capteur/update.html", {"form": form, "id": id})
+        form = CapteurForm(instance=capteur_obj)
 
-
+    return render(request, "capteur/update.html", {"form": form, "id": id})
 def traitementupdate(request, id):
-    capteurs = CapteurForm(request.POST)
-    bak = capteur.objects.get(id=id)
-    if capteur.is_valid():
-        capteurs = capteur.save(commit=False)
-        capteurs.id = id
-        capteurs.macaddr = bak.macaddr
-        capteurs.piece = bak.piece
-        capteurs.save()
-        return HttpResponseRedirect("/capteur/info.html")
+    lform = CapteurForm(request.POST)
+    if lform.is_valid():
+        Capteur = lform.save(commit=False)
+        Capteur.id = id
+        Capteur.save()
+        return HttpResponseRedirect("/collecte/")
     else:
-        return render(request, "capteur/info.html", {"form": form, "id": id})
+        return render(request, "capteur/update.html", {"form": lform, "id": id})
 
 def filtre(request, id):
-    data = capteur_data.objects.filter(sensor=id)
+    data = capteur_data.objects.filter(capteur=id)
     return render(request, 'donnees/info.html', {'data': data})
