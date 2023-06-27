@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import capteur, capteur_data
 from . import models
 from .forms import CapteurForm
@@ -21,23 +21,16 @@ def donnee(request):
 
 
 def update(request, id):
-    capteur_obj = capteur.objects.get(pk=id)
+    capteur = models.capteur.objects.get(pk=id)
+    form = CapteurForm(capteur.dico())
+    return render(request,"capteur/update.html",{"form": form, "id": id})
 
-    if request.method == "POST":
-        form = CapteurForm(request.POST, instance=capteur_obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/collecte/traitementupdate/")
-    else:
-        form = CapteurForm(instance=capteur_obj)
-
-    return render(request, "capteur/update.html", {"form": form, "id": id})
 def traitementupdate(request, id):
     lform = CapteurForm(request.POST)
     if lform.is_valid():
-        Capteur = lform.save(commit=False)
-        Capteur.id = id
-        Capteur.save()
+        capteur = lform.save(commit=False)
+        capteur.id = id
+        capteur.save()
         return HttpResponseRedirect("/collecte/")
     else:
         return render(request, "capteur/update.html", {"form": lform, "id": id})

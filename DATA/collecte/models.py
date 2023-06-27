@@ -9,11 +9,10 @@ class capteur(models.Model):
     def dico(self):
         return {"emplacement": self.emplacement, "nom": self.nom}
 
-
-
     class Meta:
         managed = False
         db_table = 'capteur'
+
 
 
 class capteur_data(models.Model):
