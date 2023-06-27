@@ -1,9 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from datetime import datetime
+from pkgutil import get_data
+import csv
+from django.shortcuts import render
 from .models import capteur, capteur_data
 from . import models
 from .forms import CapteurForm
 from django.http import HttpResponseRedirect, HttpResponse
-from django.forms.models import model_to_dict
+from django.db.models import Q
+
 
 
 def index(request):
@@ -38,3 +42,24 @@ def traitementupdate(request, id):
 def filtre(request, id):
     data = capteur_data.objects.filter(capteur=id)
     return render(request, 'donnees/info.html', {'data': data})
+
+
+def generate_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Capteur Address', 'Capteur Piece', 'Capteur Emplacement', 'Capteur Nom', 'Data Datetime', 'Data Temp'])
+
+    data = capteur_data.objects.select_related('capteur').all()
+    for item in data:
+        writer.writerow([
+            item.capteur.address,
+            item.capteur.piece,
+            item.capteur.emplacement,
+            item.capteur.nom,
+            item.datetime,
+            item.temp
+        ])
+
+    return response

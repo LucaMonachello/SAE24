@@ -8,4 +8,5 @@ urlpatterns = [
     path('traitementupdate/<int:id>/', views.traitementupdate),
     path("donnee/", views.donnee),
     path('filtre/<int:id>/', views.filtre),
+    path('csv/', views.generate_csv),
 ]
