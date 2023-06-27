@@ -77,3 +77,22 @@ def date(request):
 
     context = {'data': data}
     return render(request, 'donnees/info.html', context)
+
+
+def graphique(request):
+    data = capteur_data.objects.all()
+
+    dates = [entry.datetime for entry in data]
+    temperatures = [entry.temp for entry in data]
+
+    plt.plot(dates, temperatures)
+
+    plt.xlabel('Date et heure')
+    plt.ylabel('Température (°C)')
+    plt.title('Évolution de la température')
+
+    plt.show()
+
+    return HttpResponseRedirect("/collecte/donnee/")
+
+

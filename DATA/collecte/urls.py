@@ -10,4 +10,5 @@ urlpatterns = [
     path('filtre/<int:id>/', views.filtre),
     path('csv/', views.generate_csv),
     path('date/', views.date),
+    path('graphique/', views.graphique),
 ]
