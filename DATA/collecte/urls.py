@@ -9,4 +9,5 @@ urlpatterns = [
     path("donnee/", views.donnee),
     path('filtre/<int:id>/', views.filtre),
     path('csv/', views.generate_csv),
+    path('date/', views.date),
 ]

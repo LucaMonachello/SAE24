@@ -1,12 +1,11 @@
-from datetime import datetime
-from pkgutil import get_data
 import csv
 from django.shortcuts import render
 from .models import capteur, capteur_data
 from . import models
 from .forms import CapteurForm
 from django.http import HttpResponseRedirect, HttpResponse
-from django.db.models import Q
+from matplotlib import pyplot as plt
+from datetime import datetime
 
 
 
@@ -63,3 +62,18 @@ def generate_csv(request):
         ])
 
     return response
+
+def date(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    data = models.capteur_data.objects.all()
+
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+
+        data = data.filter(datetime__range=(start_date, end_date))
+
+    context = {'data': data}
+    return render(request, 'donnees/info.html', context)

@@ -4,34 +4,40 @@
 <META HTTP-EQUIV="Refresh" CONTENT="10; /collecte/donnee/">
 
 <div class="mainpage">
-  <a href="/collecte/"> <p class="arow"> < </p> Page Principale</a >
+  <a href="/collecte/"> <p class="arow"> < </p> Page Principale</a>
 </div>
+<li class="oui" id="nav"><a class="ab" href="/collecte/csv/">Envoie dans un csv</a></li>
 
-<li id="nav"><a href="/collecte/csv/">Envoie dans un csv</a></li>
+<form class="forme" method="GET">
+  <label for="start_date">Date de début :</label>
+  <input type="date" id="start_date" name="start_date">
+
+  <label for="end_date">Date de fin :</label>
+  <input type="date" id="end_date" name="end_date">
+
+  <button type="submit">Filtrer</button>
+</form>
 
 <table class="forms">
+  <tr class="top">
+    <th>MAC</th>
+    <th>Nom</th>
+    <th>Date</th>
+    <th>Pièce</th>
+    <th>Emplacement</th>
+    <th>Temp</th>
+  </tr>
 
-    <tr class="top">
-        <th>MAC</th>
-        <th>Nom</th>
-        <th>Date</th>
-        <th>Pièce</th>
-        <th>Emplacement</th>
-        <th>Temp</th>
-    </tr>
-
-    {% for i in data %}
-    <tr class="bot">
-        <td>{{i.capteur.address}}</td>
-        <td>{{i.capteur.nom}}</td>
-        <td>{{i.datetime}}</td>
-        <td>{{i.capteur.piece}}</td>
-        <td>{{i.capteur.emplacement}}</td>
-        <td>{{i.temp}} °C</td>
-
-    </tr>
-
-    {% endfor %}
+  {% for i in data %}
+  <tr class="bot">
+    <td>{{ i.capteur.address }}</td>
+    <td>{{ i.capteur.nom }}</td>
+    <td>{{ i.datetime }}</td>
+    <td>{{ i.capteur.piece }}</td>
+    <td>{{ i.capteur.emplacement }}</td>
+    <td>{{ i.temp }} °C</td>
+  </tr>
+  {% endfor %}
 </table>
 
 {% endblock content %}
