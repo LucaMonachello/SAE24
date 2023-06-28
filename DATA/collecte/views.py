@@ -6,6 +6,7 @@ from .forms import CapteurForm
 from django.http import HttpResponseRedirect, HttpResponse
 from matplotlib import pyplot as plt
 from datetime import datetime
+from django.forms.models import model_to_dict
 
 
 
@@ -24,19 +25,27 @@ def donnee(request):
 
 
 def update(request, id):
-    capteur = models.capteur.objects.get(pk=id)
-    form = CapteurForm(capteur.dico())
-    return render(request,"capteur/update.html",{"form": form, "id": id})
+    sensors = capteur.objects.get(pk=id)
+    form = CapteurForm(model_to_dict(sensors))
+    if request.method == "POST":
+        form = CapteurForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/collecte/donnee/")
+    else:
+        return render(request, "capteur/update.html", {"form": form, "id": id})
 
 def traitementupdate(request, id):
-    lform = CapteurForm(request.POST)
-    if lform.is_valid():
-        capteur = lform.save(commit=False)
-        capteur.id = id
-        capteur.save()
-        return HttpResponseRedirect("/collecte/")
+    bak = capteur.objects.get(id=id)
+    form = CapteurForm(request.POST, instance=bak)
+
+    if form.is_valid():
+        form.cleaned_data['address'] = bak.address
+        form.cleaned_data['piece'] = bak.piece
+        form.save()
+        return HttpResponseRedirect("/capteur/info.html")
     else:
-        return render(request, "capteur/update.html", {"form": lform, "id": id})
+        return render(request, "capteur/info.html", {"form": form, "id": id})
 
 def filtre(request, id):
     data = capteur_data.objects.filter(capteur=id)

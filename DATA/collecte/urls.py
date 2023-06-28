@@ -11,4 +11,5 @@ urlpatterns = [
     path('csv/', views.generate_csv),
     path('date/', views.date),
     path('graphique/', views.graphique),
+
 ]
