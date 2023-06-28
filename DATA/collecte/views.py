@@ -26,7 +26,7 @@ def donnee(request):
 
 def update(request, id):
     sensors = capteur.objects.get(pk=id)
-    form = CapteurForm(model_to_dict(sensors))
+    form = CapteurForm(sensors.__dict__)
     if request.method == "POST":
         form = CapteurForm(request.POST)
         if form.is_valid():
@@ -43,7 +43,7 @@ def traitementupdate(request, id):
         form.cleaned_data['address'] = bak.address
         form.cleaned_data['piece'] = bak.piece
         form.save()
-        return HttpResponseRedirect("/capteur/info.html")
+        return HttpResponseRedirect("/collecte/donnee/")
     else:
         return render(request, "capteur/info.html", {"form": form, "id": id})
 
